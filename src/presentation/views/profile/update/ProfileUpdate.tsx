@@ -14,7 +14,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'ProfileUpdateScree
 export const ProfileUpdateScreen = ({navigation, route}: Props) => {
 
     const { cliente } = route.params;
-    const {name, lastname, image, phone, loading, errorMessage, 
+    const {name, lastname, image, phone, loading, errorMessage, successMessage,
         onChange, onChangeInfoUpdate, update, pickImage, takePhoto} = useViewModel(cliente);
     
     const [modalVisible, setModalVisible] = useState(false);
@@ -24,6 +24,12 @@ export const ProfileUpdateScreen = ({navigation, route}: Props) => {
             ToastAndroid.show(errorMessage, ToastAndroid.LONG);
         }
     }, [errorMessage])
+
+    useEffect(() => {
+        if (successMessage != ''){
+            ToastAndroid.show(successMessage, ToastAndroid.LONG);
+        }
+    }, [successMessage])
 
     return (
         <View style={styles.container}>

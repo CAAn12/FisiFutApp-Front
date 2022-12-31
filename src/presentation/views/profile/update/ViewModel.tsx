@@ -10,6 +10,7 @@ import { ClienteContext } from '../../../context/ClienteContext';
 
 const ProfileUpdateViewModel = (cliente: Cliente) => {
     const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [values, setValues] = useState(cliente);
     const [loading, setLoading] = useState(false)
     const [file, setFile] = useState<ImagePicker.ImagePickerAsset>() //Igual a ImageInfo
@@ -68,6 +69,7 @@ const ProfileUpdateViewModel = (cliente: Cliente) => {
 
             if (response.success){
                 saveClienteSession(response.data);
+                setSuccessMessage(response.message);
             }
             else{
                 setErrorMessage(response.message);
@@ -105,6 +107,7 @@ const ProfileUpdateViewModel = (cliente: Cliente) => {
         takePhoto,
         onChangeInfoUpdate,
         errorMessage,
+        successMessage,
         loading,
         cliente
     }
