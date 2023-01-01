@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { CreateCanchaUseCase } from '../../../../../domain/useCases/cancha/CreateCancha';
+import { ClienteContext } from '../../../../context/ClienteContext';
 
 const CanchaAdminCreateViewModel = () => {
     const [values, setValues] = useState({
@@ -8,7 +9,6 @@ const CanchaAdminCreateViewModel = () => {
         category: '',
         size: '',
         price_per_hour: '',
-        id_gestor: '',
         image: ''
     });
 
@@ -16,13 +16,18 @@ const CanchaAdminCreateViewModel = () => {
     const [loading, setLoading] = useState(false)
     const [file, setFile] = useState<ImagePicker.ImagePickerAsset>() //Igual a ImageInfo
 
+    const { cliente, saveClienteSession } = useContext(ClienteContext);
+
     const onChange = (property: string, value: any) => {
         setValues({...values, [property]: value});
     }
 
-    const createCancha = async () => {
-      const response = await CreateCanchaUseCase(values as any, file!);
+    const createCancha = async (clienteId: string) => {
+      setLoading(true);
+      const response = await CreateCanchaUseCase({ ...values, id_gestor: clienteId } as any, file!);
+      setLoading(false);
       setResponseMessage(response.message);
+      resetForm();
     } 
 
     const pickImage = async () => {
@@ -51,12 +56,23 @@ const CanchaAdminCreateViewModel = () => {
         }
     };
 
+    const resetForm = async () => {
+      setValues({
+        name: '',
+        category: '',
+        size: '',
+        price_per_hour: '',
+        image: ''
+      })
+    }
+
     return {
         ...values,
         onChange,
         takePhoto,
         pickImage,
         createCancha,
+        cliente,
         loading,
         responseMessage
     }

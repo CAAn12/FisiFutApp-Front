@@ -16,6 +16,12 @@ export const CanchaTabsNavigator = () => {
           {
             title: 'Admin',
             tabBarLabel: 'Admin',
+            tabBarIcon: ({color}) => (
+              <Image
+                source={require('../../../assets/nombre_cancha.png')}
+                style={{width: 25, height: 25}}
+              />
+            ),
             headerRight: () => (
               <Pressable
                 onPress={() => {
@@ -36,7 +42,13 @@ export const CanchaTabsNavigator = () => {
         component={CanchaGananciasListScreen}
         options={{
           title: 'Ganancias',
-          tabBarLabel: 'Ganancias'
+          tabBarLabel: 'Ganancias',
+          tabBarIcon: ({color}) => (
+            <Image
+              source={require('../../../assets/precio_cancha.png')}
+              style={{width: 25, height: 25}}
+            />
+          )
         }}
       />
       
@@ -44,7 +56,13 @@ export const CanchaTabsNavigator = () => {
         name="ProfileInfoScreen" 
         component={ProfileInfoScreen}
         options={{
-          headerShown: false
+          headerShown: false,
+          tabBarIcon: ({color}) => (
+            <Image
+              source={require('../../../assets/user.png')}
+              style={{width: 25, height: 25}}
+            />
+          )
         }}
       />
     </Tab.Navigator>

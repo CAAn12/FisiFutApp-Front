@@ -1,8 +1,10 @@
-import React from 'react'
-import { View, Image, TextInput, StyleSheet, KeyboardType } from 'react-native'
+import React, { useState } from 'react';
+import { View, Image, TextInput, StyleSheet, KeyboardType, TouchableOpacity } from 'react-native';
 import { MyColors } from '../theme/AppTheme';
+const eyeIcon = require('../../../assets/open_eye.png');
+const eyeOffIcon = require('../../../assets/closed_eye.png');
 
-interface Props{
+interface Props {
     image: any,
     placeholder: string,
     value: any,
@@ -21,28 +23,38 @@ export const CustomTextInput = ({
     property,
     onChangeText
 }: Props) => {
+  const [isSecure, setIsSecure] = useState(secureTextEntry);
+
   return (
     <View style={styles.formInput}>
         <Image style={styles.formImage}
             source={image}
         />
 
-    <TextInput style={styles.formTextInput}
-        placeholder={placeholder}
-        placeholderTextColor={MyColors.defaultText}
-        keyboardType={keyboardType}
-        value={value}
-        onChangeText={text=>onChangeText(property, text)}
-        secureTextEntry={secureTextEntry}
-        onBlur={() => {
-            const trimmedValue = value.trimEnd();
-            onChangeText(property, trimmedValue);
-        }}
-        autoComplete="off"
-    />
+        <TextInput style={styles.formTextInput}
+            placeholder={placeholder}
+            placeholderTextColor={MyColors.defaultText}
+            keyboardType={keyboardType}
+            value={value}
+            onChangeText={text => onChangeText(property, text)}
+            secureTextEntry={isSecure}
+            onBlur={() => {
+                const trimmedValue = value.trimEnd();
+                onChangeText(property, trimmedValue);
+            }}
+        />
+
+        {property === 'password' && (
+            <TouchableOpacity onPress={() => setIsSecure(!isSecure)}>
+                <Image
+                    style={styles.icon}
+                    source={isSecure ? eyeOffIcon : eyeIcon}
+                />
+            </TouchableOpacity>
+        )}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
     formTextInput: {
@@ -50,7 +62,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: MyColors.defaultText,
         color: MyColors.defaultText,
-        marginLeft: 15
+        marginLeft: 10,
+        marginRight: 10
     },
     formImage: {
         width: 35,
@@ -59,6 +72,12 @@ const styles = StyleSheet.create({
     },
     formInput: {
         flexDirection: 'row',
-        marginTop: 20
-    }    
-})
+        marginTop: 20,
+        alignItems: 'center'
+    },
+    icon: {
+        width: 20,
+        height: 20,
+        marginRight: 10
+    }
+});

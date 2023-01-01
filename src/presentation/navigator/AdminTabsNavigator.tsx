@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
 import { AdminCanchasListScreen } from '../views/admin/category/list/CategoryList';
 import { AdminGananciasListScreen } from '../views/admin/order/list/OrderList';
 import { ProfileInfoScreen } from '../views/profile/info/profileInfo';
@@ -13,7 +14,13 @@ export const AdminTabsNavigator = () => {
         component={AdminCanchasListScreen}
         options={{
           title: 'Canchas',
-          tabBarLabel: 'Canchas'
+          tabBarLabel: 'Canchas',
+          tabBarIcon: ({color}) => (
+            <Image
+              source={require('../../../assets/nombre_cancha.png')}
+              style={{width: 25, height: 25}}
+            />
+          )
         }}  
       />
 
@@ -22,7 +29,13 @@ export const AdminTabsNavigator = () => {
         component={AdminGananciasListScreen}
         options={{
           title: 'Ganancias',
-          tabBarLabel: 'Ganancias'
+          tabBarLabel: 'Ganancias',
+          tabBarIcon: ({color}) => (
+            <Image
+              source={require('../../../assets/precio_cancha.png')}
+              style={{width: 25, height: 25}}
+            />
+          )
         }}
       />
       
@@ -30,7 +43,13 @@ export const AdminTabsNavigator = () => {
         name="ProfileInfoScreen" 
         component={ProfileInfoScreen}
         options={{
-          headerShown: false
+          headerShown: false,
+          tabBarIcon: ({color}) => (
+            <Image
+              source={require('../../../assets/user.png')}
+              style={{width: 25, height: 25}}
+            />
+          )
         }}
       />
     </Tab.Navigator>
