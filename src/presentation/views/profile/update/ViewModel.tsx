@@ -9,9 +9,9 @@ import { ResponseFisiFutApp } from '../../../../data/sources/remote/models/Respo
 import { ClienteContext } from '../../../context/ClienteContext';
 
 const ProfileUpdateViewModel = (cliente: Cliente) => {
+    const [values, setValues] = useState(cliente);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-    const [values, setValues] = useState(cliente);
     const [loading, setLoading] = useState(false)
     const [file, setFile] = useState<ImagePicker.ImagePickerAsset>() //Igual a ImageInfo
     const { getClienteSession } = useClientLocal();

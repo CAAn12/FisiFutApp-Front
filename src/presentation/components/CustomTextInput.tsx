@@ -5,7 +5,7 @@ import { MyColors } from '../theme/AppTheme';
 interface Props{
     image: any,
     placeholder: string,
-    value: string,
+    value: any,
     keyboardType: KeyboardType,
     secureTextEntry?: boolean,
     property: string,
@@ -27,14 +27,19 @@ export const CustomTextInput = ({
             source={image}
         />
 
-        <TextInput style={styles.formTextInput}
-            placeholder={placeholder}
-            placeholderTextColor={MyColors.defaultText}
-            keyboardType={keyboardType}
-            value={value}
-            onChangeText={text=>onChangeText(property, text)}
-            secureTextEntry={secureTextEntry}
-        />
+    <TextInput style={styles.formTextInput}
+        placeholder={placeholder}
+        placeholderTextColor={MyColors.defaultText}
+        keyboardType={keyboardType}
+        value={value}
+        onChangeText={text=>onChangeText(property, text)}
+        secureTextEntry={secureTextEntry}
+        onBlur={() => {
+            const trimmedValue = value.trimEnd();
+            onChangeText(property, trimmedValue);
+        }}
+        autoComplete="off"
+    />
     </View>
   )
 }

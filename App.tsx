@@ -11,6 +11,7 @@ import { AdminTabsNavigator } from './src/presentation/navigator/AdminTabsNaviga
 import { ProfileUpdateScreen } from './src/presentation/views/profile/update/ProfileUpdate';
 import { Cliente } from './src/domain/entities/Cliente';
 import { ClienteProvider } from './src/presentation/context/ClienteContext';
+import { CanchaAdminCreateScreen } from './src/presentation/views/cancha/category/create/CategoryCreate';
 
 export type RootStackParamList = {
   HomeScreen: undefined,
@@ -19,7 +20,8 @@ export type RootStackParamList = {
   AdminTabsNavigator: undefined,
   ClienteTabsNavigator: undefined,
   CanchaTabsNavigator: undefined,
-  ProfileUpdateScreen: {cliente: Cliente }
+  ProfileUpdateScreen: {cliente: Cliente },
+  CanchaAdminCreateScreen: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -81,6 +83,19 @@ const App = () => {
               options={{
                 headerShown: true,
                 title: 'Actualizar usuario',
+                headerTintColor: MyColors.defaultText,
+                headerStyle: {
+                  backgroundColor: MyColors.background
+                }
+              }}
+          />
+
+          <Stack.Screen
+              name='CanchaAdminCreateScreen'
+              component={CanchaAdminCreateScreen}
+              options={{
+                headerShown: true,
+                title: 'Nueva cancha',
                 headerTintColor: MyColors.defaultText,
                 headerStyle: {
                   backgroundColor: MyColors.background

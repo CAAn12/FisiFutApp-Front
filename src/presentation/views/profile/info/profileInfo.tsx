@@ -13,7 +13,7 @@ export const ProfileInfoScreen = () => {
     const { cliente, removeClienteSession } = useViewModel();
 
     useEffect(() => {
-        if (cliente.id === ''){
+        if (cliente?.id === ''){
             navigation.replace('HomeScreen');
         }
     }, [cliente])

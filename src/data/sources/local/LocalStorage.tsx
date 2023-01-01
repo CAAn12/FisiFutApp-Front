@@ -2,18 +2,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export const LocalStorage = () => {
     const save = async (key: string, value: string) => {
-        if (value == null) {
-            try {
-                await AsyncStorage.removeItem(key);
-            } catch (error) {
-                console.log('Error al eliminar el valor del almacenamiento local: ' + error);
-            }
-        } else {
-            try {
-                await AsyncStorage.setItem(key, value);
-            } catch (error) {
-                console.log('Error en local storage' + error);
-            }
+        try {
+            await AsyncStorage.setItem(key, value);
+        } catch (error) {
+            console.log('Error en local storage' + error);
         }
     }
 

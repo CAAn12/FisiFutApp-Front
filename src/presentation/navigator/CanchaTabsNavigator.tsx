@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image, Pressable } from 'react-native';
 import { CanchaAdminListScreen } from '../views/cancha/category/list/CategoryList';
 import { CanchaGananciasListScreen } from '../views/cancha/reservation/list/ReservationList';
 import { ProfileInfoScreen } from '../views/profile/info/profileInfo';
@@ -10,11 +11,24 @@ export const CanchaTabsNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen 
         name="CanchaAdminListScreen" 
-        component={CanchaAdminListScreen}
-        options={{
-          title: 'Admin',
-          tabBarLabel: 'Admin'
-        }}
+        component={CanchaAdminListScreen} 
+        options={ ({route, navigation}) => (
+          {
+            title: 'Admin',
+            tabBarLabel: 'Admin',
+            headerRight: () => (
+              <Pressable
+                onPress={() => {
+                  navigation.navigate('CanchaAdminCreateScreen');
+                }}
+              >
+                <Image
+                  source={require('../../../assets/add.png')}
+                  style={{width: 40, height: 40, marginRight: 15}}
+                />
+              </Pressable>
+            )
+        })}
       />
 
       <Tab.Screen 

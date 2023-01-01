@@ -1,3 +1,5 @@
+import { StyleSheet } from "react-native";
+
 export const MyColors = {
     primary: '#2196f3', //Hotspring mist
     secondary: '#706213', //Olive
@@ -5,3 +7,13 @@ export const MyColors = {
     background: 'black',
     defaultText: 'white'
 }
+
+export const MyStyles = StyleSheet.create({
+    loading: {
+        position: 'absolute',
+        bottom: 0,
+        top: 0,
+        right: 0,
+        left: 0
+    }
+});
