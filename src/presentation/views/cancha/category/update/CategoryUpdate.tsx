@@ -99,7 +99,7 @@ export const CanchaAdminUpdateScreen = ({navigation, route}: Props) => {
                     <View style={styles.extraButtonsContainer}>
                         <RoundedButton
                             text='Añadir dirección'
-                            onPress={() => {}}
+                            onPress={() => navigation.navigate('CanchaAddressListScreen')}
                             style={styles.extraButton}
                         />
                         <RoundedButton

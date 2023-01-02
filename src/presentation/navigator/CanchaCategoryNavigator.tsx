@@ -7,11 +7,15 @@ import { CanchaAdminUpdateScreen } from '../views/cancha/category/update/Categor
 import { CanchaAdminListScreen } from '../views/cancha/category/list/CategoryList';
 import { MyColors } from '../theme/AppTheme';
 import { Image, Pressable } from 'react-native';
+import { CanchaAddressListScreen } from '../views/cancha/address/list/AddressList';
+import { CanchaAddressCreateScreen } from '../views/cancha/address/create/AddressCreate';
 
 export type CanchaStackParamList = {
     CanchaAdminCreateScreen: undefined,
     CanchaAdminUpdateScreen: { cancha: Cancha },
-    CanchaAdminListScreen: undefined
+    CanchaAdminListScreen: undefined,
+    CanchaAddressListScreen: undefined,
+    CanchaAddressCreateScreen: undefined
 }
 
 const Stack = createNativeStackNavigator<CanchaStackParamList>();
@@ -73,7 +77,47 @@ export const CanchaCategoryNavigator = () => {
                             backgroundColor: MyColors.background
                         }
                     }}
-                />            
+                />
+
+                <Stack.Screen
+                    name='CanchaAddressListScreen'
+                    component={CanchaAddressListScreen}
+                    options={({route, navigation}) => (
+                        {
+                            headerShown: true,
+                            title: 'Dirección',
+                            headerRight: () => (
+                                <Pressable
+                                onPress={() => {
+                                    navigation.navigate('CanchaAddressCreateScreen');
+                                }}
+                                >
+                                <Image
+                                    source={require('../../../assets/add.png')}
+                                    style={{width: 40, height: 40}}
+                                />
+                                </Pressable>
+                            ),
+                            headerTintColor: MyColors.defaultText,
+                            headerStyle: {
+                                backgroundColor: MyColors.background
+                            }
+                        })
+                    }
+                />
+
+                <Stack.Screen
+                    name='CanchaAddressCreateScreen'
+                    component={CanchaAddressCreateScreen}
+                    options={{
+                        headerShown: true,
+                        title: 'Dirección',
+                        headerTintColor: MyColors.defaultText,
+                        headerStyle: {
+                            backgroundColor: MyColors.background
+                        }
+                    }}
+                />        
             </Stack.Navigator>
         </CanchaState>
     )
