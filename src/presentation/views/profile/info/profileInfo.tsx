@@ -1,7 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import { RootStackParamList } from '../../../../../App';
+import { RootStackParamList } from '../../../navigator/MainStackNavigator';
 import useViewModel from './ViewModel';
 import styles from './Styles';
 import { useNavigation } from '@react-navigation/native';

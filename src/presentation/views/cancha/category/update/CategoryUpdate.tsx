@@ -1,15 +1,15 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState, useEffect } from 'react'
 import { ActivityIndicator, Image, Pressable, ScrollView, ToastAndroid, View } from 'react-native'
-import { RootStackParamList } from '../../../../../../App';
 import { CustomTextInput } from '../../../../components/CustomTextInput';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import { RoundedButton } from '../../../../components/RoundedButton';
+import { CanchaStackParamList } from '../../../../navigator/CanchaCategoryNavigator';
 import { MyColors, MyStyles } from '../../../../theme/AppTheme';
 import styles from './Styles'
 import useViewModel from './ViewModel';
 
-interface Props extends StackScreenProps<RootStackParamList, 'CanchaAdminUpdateScreen'>{};
+interface Props extends StackScreenProps<CanchaStackParamList, 'CanchaAdminUpdateScreen'>{};
 
 export const CanchaAdminUpdateScreen = ({navigation, route}: Props) => {
     const { cancha } = route.params;

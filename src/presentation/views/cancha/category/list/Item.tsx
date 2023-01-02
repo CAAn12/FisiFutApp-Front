@@ -4,8 +4,8 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Cancha } from '../../../../../domain/entities/Cancha'
 import { MyColors } from '../../../../theme/AppTheme';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../../../../../../App';
 import { Alert } from 'react-native';
+import { CanchaStackParamList } from '../../../../navigator/CanchaCategoryNavigator';
 
 interface Props {
     cancha: Cancha;
@@ -15,7 +15,7 @@ interface Props {
 export const CanchaListItem = ({cancha, remove}: Props) => {
     const firstImages = cancha.images.split(',')[0];
 
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<StackNavigationProp<CanchaStackParamList>>();
 
     const handlePressRemove = () => {
         Alert.alert(

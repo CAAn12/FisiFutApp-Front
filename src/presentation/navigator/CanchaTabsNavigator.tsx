@@ -4,42 +4,30 @@ import { MyColors } from '../theme/AppTheme';
 import { CanchaAdminListScreen } from '../views/cancha/category/list/CategoryList';
 import { CanchaGananciasListScreen } from '../views/cancha/reservation/list/ReservationList';
 import { ProfileInfoScreen } from '../views/profile/info/profileInfo';
+import { CanchaCategoryNavigator } from './CanchaCategoryNavigator';
 
 const Tab = createBottomTabNavigator();
 
 export const CanchaTabsNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
       <Tab.Screen 
-        name="CanchaAdminListScreen" 
-        component={CanchaAdminListScreen} 
-        options={ ({route, navigation}) => (
-          {
-            title: 'Admin',
-            tabBarLabel: 'Admin',
-            tabBarIcon: ({color}) => (
-              <Image
-                source={require('../../../assets/nombre_cancha.png')}
-                style={{width: 25, height: 25}}
-              />
-            ),
-            headerRight: () => (
-              <Pressable
-                onPress={() => {
-                  navigation.navigate('CanchaAdminCreateScreen');
-                }}
-              >
-                <Image
-                  source={require('../../../assets/add.png')}
-                  style={{width: 40, height: 40, marginRight: 15}}
-                />
-              </Pressable>
-            ),
-            headerTintColor: MyColors.defaultText,
-            headerStyle: {
-              backgroundColor: MyColors.background
-            }
-        })}
+        name="CanchaCategoryNavigator" 
+        component={CanchaCategoryNavigator}
+        options={{
+          title: 'Admin',
+          tabBarLabel: 'Admin',
+          tabBarIcon: ({color}) => (
+            <Image
+              source={require('../../../assets/nombre_cancha.png')}
+              style={{width: 25, height: 25}}
+            />
+          )
+        }}
       />
 
       <Tab.Screen 
@@ -61,6 +49,7 @@ export const CanchaTabsNavigator = () => {
         name="ProfileInfoScreen" 
         component={ProfileInfoScreen}
         options={{
+          tabBarLabel: 'Perfil',
           headerShown: false,
           tabBarIcon: ({color}) => (
             <Image

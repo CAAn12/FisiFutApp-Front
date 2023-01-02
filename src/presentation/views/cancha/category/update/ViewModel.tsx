@@ -5,6 +5,7 @@ import { UpdateWithImageCanchaUseCase } from '../../../../../domain/useCases/can
 import { ClienteContext } from '../../../../context/ClienteContext';
 import { Cancha } from '../../../../../domain/entities/Cancha';
 import { ResponseFisiFutApp } from '../../../../../data/sources/remote/models/ResponseFisiFutApp';
+import { CanchaContext } from '../../../../context/CanchaContext';
 
 const CanchaAdminUpdateViewModel = (cancha: Cancha) => {
   const [values, setValues] = useState({
@@ -20,7 +21,7 @@ const CanchaAdminUpdateViewModel = (cancha: Cancha) => {
   const [responseMessage, setResponseMessage] = useState('');
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState<ImagePicker.ImagePickerAsset>() //Igual a ImageInfo
-
+  const { update, updateWithImage } = useContext(CanchaContext);
   const { cliente, saveClienteSession } = useContext(ClienteContext);
 
   const onChange = (property: string, value: any) => {
@@ -32,10 +33,10 @@ const CanchaAdminUpdateViewModel = (cancha: Cancha) => {
     let response = {} as ResponseFisiFutApp;
     
     if(values.image?.includes('https://')){
-      response = await UpdateCanchaUseCase(values);
+      response = await update(values);
     }
     else{
-      response = await UpdateWithImageCanchaUseCase(values, file!);
+      response = await updateWithImage(values, file!);
     }
     setLoading(false);
     setResponseMessage(response.message);

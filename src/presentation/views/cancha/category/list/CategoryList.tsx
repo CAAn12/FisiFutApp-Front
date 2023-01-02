@@ -5,11 +5,7 @@ import useViewModel from './ViewModel'
 
 export const CanchaAdminListScreen = () => {
     const {canchas, responseMessage, getCanchas, deleteCancha} = useViewModel();
-
-    useEffect(() => {
-        getCanchas(); 
-    }, [])
-
+    
     useEffect(() => {
         if(responseMessage !== ''){
             ToastAndroid.show(responseMessage, ToastAndroid.LONG);

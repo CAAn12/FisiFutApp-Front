@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Image, View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { StackScreenProps } from '@react-navigation/stack'
-import { RootStackParamList } from '../../../../App';
+import { RootStackParamList } from '../../navigator/MainStackNavigator';
 import useViewModel from './ViewModel';
 import { CustomTextInput } from '../../components/CustomTextInput';
 import styles from './Styles'

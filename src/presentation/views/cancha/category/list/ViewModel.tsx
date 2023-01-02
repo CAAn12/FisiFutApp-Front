@@ -3,24 +3,16 @@ import { Cancha } from '../../../../../domain/entities/Cancha'
 import { GetAllCanchaUseCase } from '../../../../../domain/useCases/cancha/GetAllCancha';
 import { ClienteContext } from '../../../../context/ClienteContext';
 import { DeleteCanchaUseCase } from '../../../../../domain/useCases/cancha/DeleteCancha';
+import { CanchaContext } from '../../../../context/CanchaContext';
 
 const CanchaAdminListViewModel = () => {
-    const [canchas, setCanchas] = useState<Cancha[]>([]);
-    const [responseMessage, setResponseMessage] = useState(''); 
-
+    const [responseMessage, setResponseMessage] = useState('');
+    const { canchas, getCanchas, remove } = useContext(CanchaContext);
     const { cliente, saveClienteSession } = useContext(ClienteContext);
-    
-    const getCanchas = async() => {
-        const result = await GetAllCanchaUseCase(JSON.stringify(cliente.id));
-        setCanchas(result);
-    }
 
     const deleteCancha = async(idCancha: string) => {
-        const result = await DeleteCanchaUseCase(idCancha);
+        const result = await remove(idCancha);
         setResponseMessage(result.message);
-        if (result.success){
-            getCanchas();
-        }
     }
 
     return {

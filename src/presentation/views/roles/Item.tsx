@@ -1,7 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react'
 import { Image, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
-import { RootStackParamList } from '../../../../App';
+import { RootStackParamList } from '../../navigator/MainStackNavigator';
 import { Rol } from '../../../domain/entities/Rol';
 import { MyColors } from '../../theme/AppTheme';
 
