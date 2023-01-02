@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, Pressable } from 'react-native';
+import { MyColors } from '../theme/AppTheme';
 import { CanchaAdminListScreen } from '../views/cancha/category/list/CategoryList';
 import { CanchaGananciasListScreen } from '../views/cancha/reservation/list/ReservationList';
 import { ProfileInfoScreen } from '../views/profile/info/profileInfo';
@@ -33,7 +34,11 @@ export const CanchaTabsNavigator = () => {
                   style={{width: 40, height: 40, marginRight: 15}}
                 />
               </Pressable>
-            )
+            ),
+            headerTintColor: MyColors.defaultText,
+            headerStyle: {
+              backgroundColor: MyColors.background
+            }
         })}
       />
 

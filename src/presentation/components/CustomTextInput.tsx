@@ -38,10 +38,6 @@ export const CustomTextInput = ({
             value={value}
             onChangeText={text => onChangeText(property, text)}
             secureTextEntry={isSecure}
-            onBlur={() => {
-                const trimmedValue = value.trimEnd();
-                onChangeText(property, trimmedValue);
-            }}
         />
 
         {property === 'password' && (

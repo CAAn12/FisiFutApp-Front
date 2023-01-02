@@ -57,7 +57,7 @@ const ProfileInfoStyles = StyleSheet.create({
     logout: {
         position: 'absolute',
         alignSelf: 'center',
-        top: 30,
+        top: 50,
         right: 10
     },
     logoutImage: {

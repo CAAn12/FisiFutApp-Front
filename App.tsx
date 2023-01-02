@@ -12,6 +12,8 @@ import { ProfileUpdateScreen } from './src/presentation/views/profile/update/Pro
 import { Cliente } from './src/domain/entities/Cliente';
 import { ClienteProvider } from './src/presentation/context/ClienteContext';
 import { CanchaAdminCreateScreen } from './src/presentation/views/cancha/category/create/CategoryCreate';
+import { CanchaAdminUpdateScreen } from './src/presentation/views/cancha/category/update/CategoryUpdate';
+import { Cancha } from './src/domain/entities/Cancha';
 
 export type RootStackParamList = {
   HomeScreen: undefined,
@@ -21,7 +23,8 @@ export type RootStackParamList = {
   ClienteTabsNavigator: undefined,
   CanchaTabsNavigator: undefined,
   ProfileUpdateScreen: {cliente: Cliente },
-  CanchaAdminCreateScreen: undefined
+  CanchaAdminCreateScreen: undefined,
+  CanchaAdminUpdateScreen: { cancha: Cancha }
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -68,39 +71,52 @@ const App = () => {
           />
           
           <Stack.Screen
-              name='ClienteTabsNavigator'
-              component={ClienteTabsNavigator}
+            name='ClienteTabsNavigator'
+            component={ClienteTabsNavigator}
           />
 
           <Stack.Screen
-              name='CanchaTabsNavigator'
-              component={CanchaTabsNavigator}
+            name='CanchaTabsNavigator'
+            component={CanchaTabsNavigator}
           />
 
           <Stack.Screen
-              name='ProfileUpdateScreen'
-              component={ProfileUpdateScreen}
-              options={{
-                headerShown: true,
-                title: 'Actualizar usuario',
-                headerTintColor: MyColors.defaultText,
-                headerStyle: {
-                  backgroundColor: MyColors.background
-                }
-              }}
+            name='ProfileUpdateScreen'
+            component={ProfileUpdateScreen}
+            options={{
+              headerShown: true,
+              title: 'Actualizar usuario',
+              headerTintColor: MyColors.defaultText,
+              headerStyle: {
+                backgroundColor: MyColors.background
+              }
+            }}
           />
 
           <Stack.Screen
-              name='CanchaAdminCreateScreen'
-              component={CanchaAdminCreateScreen}
-              options={{
-                headerShown: true,
-                title: 'Nueva cancha',
-                headerTintColor: MyColors.defaultText,
-                headerStyle: {
-                  backgroundColor: MyColors.background
-                }
-              }}
+            name='CanchaAdminCreateScreen'
+            component={CanchaAdminCreateScreen}
+            options={{
+              headerShown: true,
+              title: 'Nueva cancha',
+              headerTintColor: MyColors.defaultText,
+              headerStyle: {
+                backgroundColor: MyColors.background
+              }
+            }}
+          />
+
+          <Stack.Screen
+            name='CanchaAdminUpdateScreen'
+            component={CanchaAdminUpdateScreen}
+            options={{
+              headerShown: true,
+              title: 'Actualizar cancha',
+              headerTintColor: MyColors.defaultText,
+              headerStyle: {
+                backgroundColor: MyColors.background
+              }
+            }}
           />
 
         </Stack.Navigator>

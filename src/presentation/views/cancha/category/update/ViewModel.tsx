@@ -2,15 +2,16 @@ import { useContext, useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { CreateCanchaUseCase } from '../../../../../domain/useCases/cancha/CreateCancha';
 import { ClienteContext } from '../../../../context/ClienteContext';
+import { Cancha } from '../../../../../domain/entities/Cancha';
 
-const CanchaAdminCreateViewModel = () => {
+const CanchaAdminUpdateViewModel = (cancha: Cancha) => {
     const [values, setValues] = useState({
-        name: '',
-        category: '',
-        size: '',
-        price_per_hour: '',
-        images: '',
-        image: ''
+        name: cancha.name,
+        category: cancha.category,
+        size: cancha.size.toString(),
+        price_per_hour: cancha.price_per_hour.toString(),
+        image: cancha.images.split(',')[0],
+        images: ''
     });
 
     const [responseMessage, setResponseMessage] = useState('');
@@ -80,4 +81,4 @@ const CanchaAdminCreateViewModel = () => {
     }
 }
 
-export default CanchaAdminCreateViewModel;
+export default CanchaAdminUpdateViewModel;
