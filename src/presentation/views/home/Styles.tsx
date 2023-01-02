@@ -25,9 +25,10 @@ const HomeStyles = StyleSheet.create({
     },
     form: {
         width: '100%',
-        height: '55%',
-        position: 'absolute',
+        flex: 0.55,
+        position: 'relative',
         bottom: 0,
+        top: '45%',
         padding: 30
     },
     formText: {

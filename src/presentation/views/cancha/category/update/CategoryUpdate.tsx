@@ -14,7 +14,7 @@ interface Props extends StackScreenProps<RootStackParamList, 'CanchaAdminUpdateS
 export const CanchaAdminUpdateScreen = ({navigation, route}: Props) => {
     const { cancha } = route.params;
     const { name, category, size, price_per_hour, cliente, responseMessage, 
-        loading, image, takePhoto, pickImage, createCancha, onChange} = useViewModel(cancha);
+        loading, image, takePhoto, pickImage, updateCancha, onChange} = useViewModel(cancha);
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
@@ -82,8 +82,8 @@ export const CanchaAdminUpdateScreen = ({navigation, route}: Props) => {
 
                 <View style={styles.buttonContainer}>
                     <RoundedButton
-                        text='Crear cancha'
-                        onPress={() => createCancha(JSON.stringify(cliente.id))}
+                        text='Actualizar cancha'
+                        onPress={() => updateCancha()}
                     />
                 </View>
             </View>

@@ -41,6 +41,41 @@ export class CanchaRepositoryImpl implements CanchaRepository {
         }
     }
 
+    async update(cancha: Cancha): Promise<ResponseFisiFutApp> {
+        try{
+            const response = await ApiFisiFutApp.put<ResponseFisiFutApp>('/canchas/updateWithoutImage_principal', cancha);
+            return Promise.resolve(response.data);
+        }
+        catch(error){
+            let e = (error as AxiosError);
+            console.log('ERROR: ' + JSON.stringify(e.response?.data));
+            const apiError: ResponseFisiFutApp = JSON.parse(JSON.stringify(e.response?.data));
+            return Promise.resolve(apiError);
+        }
+    }
+
+    async updateWithImage(cancha: Cancha, file: ImagePicker.ImagePickerAsset): Promise<ResponseFisiFutApp> {
+        try{
+            let data = new FormData();
+            data.append('image', {
+                // @ts-ignore
+                uri: file.uri,
+                name: file.uri.split('/').pop()!,
+                type: mime.getType(file.uri)!
+            });
+            data.append('cancha', JSON.stringify(cancha));
+
+            const response = await ApiFisiFutAppForImage.put<ResponseFisiFutApp>('/canchas/updateWithImage_principal', data);
+            return Promise.resolve(response.data);
+        }
+        catch(error) {
+            let e = (error as AxiosError);
+            console.log('ERROR: ' + JSON.stringify(e.response?.data));
+            const apiError: ResponseFisiFutApp = JSON.parse(JSON.stringify(e.response?.data));
+            return Promise.resolve(apiError);
+        }        
+    }
+
     async remove(id: string): Promise<ResponseFisiFutApp> {
         try{
             const response = await ApiFisiFutApp.delete<ResponseFisiFutApp>(`/canchas/delete/${id}`);

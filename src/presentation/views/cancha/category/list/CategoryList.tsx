@@ -18,7 +18,7 @@ export const CanchaAdminListScreen = () => {
     
     return (
         <View style = {{flex: 1, backgroundColor: 'black'}}>
-            <FlatList
+            <FlatList style = {{flex: 1}}
                 data={canchas}
                 keyExtractor={ (item) => item.id! }
                 renderItem={ ({item}) => <CanchaListItem cancha = {item} remove = {deleteCancha}/>}

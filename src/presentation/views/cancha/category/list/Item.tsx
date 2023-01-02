@@ -5,6 +5,7 @@ import { Cancha } from '../../../../../domain/entities/Cancha'
 import { MyColors } from '../../../../theme/AppTheme';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../../../App';
+import { Alert } from 'react-native';
 
 interface Props {
     cancha: Cancha;
@@ -13,7 +14,26 @@ interface Props {
 
 export const CanchaListItem = ({cancha, remove}: Props) => {
     const firstImages = cancha.images.split(',')[0];
+
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+    const handlePressRemove = () => {
+        Alert.alert(
+            'Eliminar cancha',
+            '¿Estás seguro de que quieres eliminar esta cancha?',
+            [
+                {
+                    text: 'Cancelar',
+                    style: 'cancel'
+                },
+                {
+                    text: 'Eliminar',
+                    onPress: () => remove(cancha.id!),
+                    style: 'destructive'
+                }
+            ]
+        );
+    };
 
     return (
         <Pressable>
@@ -40,12 +60,12 @@ export const CanchaListItem = ({cancha, remove}: Props) => {
                         />
                     </Pressable>
 
-                    <Pressable
-                        onPress={() => remove(cancha.id!)}
+                    <Pressable 
+                        onPress={handlePressRemove}
                     >
                         <Image
-                            source = {require('../../../../../../assets/delete.png')}
-                            style = {styles.actionImage}
+                            source={require('../../../../../../assets/delete.png')}
+                            style={styles.actionImage}
                         />
                     </Pressable>
                 </View>
@@ -62,7 +82,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 100,
         marginHorizontal: 15,
-        marginTop: 20,
+        marginTop: 15,
         flex: 1,
         backgroundColor: 'black'
     },
@@ -70,7 +90,8 @@ const styles = StyleSheet.create({
         width: 100,
         heigth: 100,
         resizeMode: 'contain',
-        borderRadius: 5
+        borderRadius: 5,
+        top: 5
     },
     info: {
         marginLeft: 10,
@@ -78,20 +99,21 @@ const styles = StyleSheet.create({
     },
     title: {
         color: MyColors.defaultText,
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold'
     },
     description: {
         color: MyColors.defaultText,
-        fontSize: 16
+        fontSize: 15
     },
     actionImage: {
         width: 25,
         height: 25,
-        marginVertical: 10
+        marginVertical: 5,
+        marginTop: 20
     },
     actionContainer: {
-        marginRight: 40
+        marginRight: 35
     },
     divider: {
         height: 1,
