@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ActivityIndicator, Image, Pressable, ScrollView, ToastAndroid, View } from 'react-native'
+import { Alert, ActivityIndicator, Image, Pressable, ScrollView, ToastAndroid, View } from 'react-native'
 import { CustomTextInput } from '../../../../components/CustomTextInput';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import { RoundedButton } from '../../../../components/RoundedButton';
@@ -76,10 +76,22 @@ export const CanchaAdminCreateScreen = () => {
                 />
 
                 <View style={styles.buttonContainer}>
-                    <RoundedButton
-                        text='Crear cancha'
-                        onPress={() => createCancha(JSON.stringify(cliente.id))}
-                    />
+                <RoundedButton
+                    text='Crear cancha'
+                    onPress={() => {
+                        if (image === '') {
+                        Alert.alert(
+                            'Advertencia',
+                            'Debe adjuntar una imagen de modo obligatorio para crear la cancha',
+                            [
+                            { text: 'Entendido' },
+                            ],
+                        );
+                        } else {
+                        createCancha(JSON.stringify(cliente.id));
+                        }
+                    }}
+                />
                 </View>
             </View>
 
