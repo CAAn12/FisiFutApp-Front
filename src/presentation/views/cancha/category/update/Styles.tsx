@@ -15,7 +15,6 @@ const CanchaAdminUdpateStyles = StyleSheet.create({
     logoContainer: {
         position: 'absolute',
         alignSelf: 'center',
-        top: '5%',
         alignItems: 'center'
     },
     logoImage: {
@@ -24,13 +23,13 @@ const CanchaAdminUdpateStyles = StyleSheet.create({
         width: 100
     },
     logoPerfil : {
-        height: 200,
-        width: 200,
+        height: 180,
+        width: 180,
         resizeMode: 'contain'
     },
     form: {
         backgroundColor: MyColors.background,
-        height: '65%',
+        height: '70%',
         width: '100%',
         paddingHorizontal: 30,
         position: 'absolute',
@@ -38,10 +37,20 @@ const CanchaAdminUdpateStyles = StyleSheet.create({
     },
     buttonContainer: {
         position: 'absolute',
-        marginTop: 350,
+        marginTop: 300,
         left: 20,
         right: 20,
-    }
+    },extraButtonsContainer: {
+        flexDirection: 'column',
+        marginTop: 20,
+        marginBottom: 20,
+      },
+      extraButton: {
+        height: 32,
+        paddingHorizontal: 16,
+        marginBottom: 20,
+        backgroundColor: MyColors.secondary
+      }
 });
 
 export default CanchaAdminUdpateStyles;

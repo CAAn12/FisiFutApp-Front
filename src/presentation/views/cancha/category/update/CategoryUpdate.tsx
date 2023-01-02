@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState, useEffect } from 'react'
-import { ActivityIndicator, Image, Pressable, ScrollView, ToastAndroid, View } from 'react-native'
+import { ActivityIndicator, Button, Image, Pressable, ScrollView, ToastAndroid, View } from 'react-native'
 import { CustomTextInput } from '../../../../components/CustomTextInput';
 import { ModalPickImage } from '../../../../components/ModalPickImage';
 import { RoundedButton } from '../../../../components/RoundedButton';
@@ -44,41 +44,43 @@ export const CanchaAdminUpdateScreen = ({navigation, route}: Props) => {
             </View>
 
             <View style={styles.form}>
-                <CustomTextInput
-                    placeholder='Nombre'
-                    image={require('../../../../../../assets/nombre_cancha.png')}
-                    keyboardType='default'
-                    property='name'
-                    value={name}
-                    onChangeText={ onChange }
-                />
+                <ScrollView>
+                    <CustomTextInput
+                        placeholder='Nombre'
+                        image={require('../../../../../../assets/nombre_cancha.png')}
+                        keyboardType='default'
+                        property='name'
+                        value={name}
+                        onChangeText={ onChange }
+                    />
 
-                <CustomTextInput
-                    placeholder='Categoría'
-                    image={require('../../../../../../assets/categoria_cancha.png')}
-                    keyboardType='default'
-                    property='category'
-                    value={category}
-                    onChangeText={ onChange }
-                />
+                    <CustomTextInput
+                        placeholder='Categoría'
+                        image={require('../../../../../../assets/categoria_cancha.png')}
+                        keyboardType='default'
+                        property='category'
+                        value={category}
+                        onChangeText={ onChange }
+                    />
 
-                <CustomTextInput
-                    placeholder='Capacidad'
-                    image={require('../../../../../../assets/capacidad_cancha.png')}
-                    keyboardType='numeric'
-                    property='size'
-                    value={size}
-                    onChangeText={ onChange }
-                />
+                    <CustomTextInput
+                        placeholder='Capacidad'
+                        image={require('../../../../../../assets/capacidad_cancha.png')}
+                        keyboardType='numeric'
+                        property='size'
+                        value={size}
+                        onChangeText={ onChange }
+                    />
 
-                <CustomTextInput
-                    placeholder='Precio por hora (S/)'
-                    image={require('../../../../../../assets/precio_cancha.png')}
-                    keyboardType='numeric'
-                    property='price_per_hour'
-                    value={price_per_hour}
-                    onChangeText={ onChange }
-                />
+                    <CustomTextInput
+                        placeholder='Precio por hora (S/)'
+                        image={require('../../../../../../assets/precio_cancha.png')}
+                        keyboardType='numeric'
+                        property='price_per_hour'
+                        value={price_per_hour}
+                        onChangeText={ onChange }
+                    />
+                </ScrollView>
 
                 <View style={styles.buttonContainer}>
                     <RoundedButton
@@ -86,6 +88,26 @@ export const CanchaAdminUpdateScreen = ({navigation, route}: Props) => {
                         onPress={() => updateCancha()}
                     />
                 </View>
+
+                <View style={styles.buttonContainer}>
+                    <RoundedButton
+                        text='Actualizar cancha'
+                        onPress={() => updateCancha()}
+                    />
+                </View>        
+
+                    <View style={styles.extraButtonsContainer}>
+                        <RoundedButton
+                            text='Añadir dirección'
+                            onPress={() => {}}
+                            style={styles.extraButton}
+                        />
+                        <RoundedButton
+                            text='Añadir suscripción'
+                            onPress={() => {}}
+                            style={styles.extraButton}
+                        />
+                    </View>        
             </View>
 
             <ModalPickImage
